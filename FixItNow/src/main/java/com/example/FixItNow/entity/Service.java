@@ -1,4 +1,4 @@
-package com.example.FixItNow.entity;
+package com.fixitnow.app.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -38,4 +38,3 @@ public class Service {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 }
-
