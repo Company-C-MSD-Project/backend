@@ -1,8 +1,11 @@
-package com.fixitnow.app.entity;
-
-import com.fixitnow.app.enums.PaymentStatus;
+package com.example.FixItNow.entity;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
