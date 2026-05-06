@@ -8,6 +8,8 @@ public class FixItNowApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FixItNowApplication.class, args);
+		//ggkugugjg
+		int a= 55;
 	}
 
 }
