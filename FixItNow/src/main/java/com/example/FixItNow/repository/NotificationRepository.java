@@ -1,6 +1,6 @@
 package com.example.FixItNow.repository;
 
-import com.fixitnow.app.entity.Notification;
+import com.example.FixItNow.entity.Notification;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

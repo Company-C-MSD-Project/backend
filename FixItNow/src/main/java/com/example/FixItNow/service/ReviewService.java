@@ -5,6 +5,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.FixItNow.repository.ReviewRepository;
+import com.example.FixItNow.repository.BookingRepository;
+import com.example.FixItNow.repository.UserRepository;
+import com.example.FixItNow.entity.Review;
+import com.example.FixItNow.entity.Booking;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.enums.BookingStatus;
+import com.example.FixItNow.enums.BadgeLevel;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+import com.example.FixItNow.exception.BadRequestException;
+
 import java.util.List;
 
 /**

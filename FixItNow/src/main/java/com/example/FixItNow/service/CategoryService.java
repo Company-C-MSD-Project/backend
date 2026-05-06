@@ -6,6 +6,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+import com.example.FixItNow.repository.CategoryRepository;
+import com.example.FixItNow.entity.Category;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+import com.example.FixItNow.exception.BadRequestException;
+
 /** Service catalog management — categories created/managed by Admin (SRS FR7). */
 @Service
 @RequiredArgsConstructor

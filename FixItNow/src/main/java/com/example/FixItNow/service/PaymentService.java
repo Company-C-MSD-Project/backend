@@ -12,6 +12,15 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.FixItNow.repository.PaymentRepository;
+import com.example.FixItNow.repository.BookingRepository;
+import com.example.FixItNow.entity.Payment;
+import com.example.FixItNow.entity.Booking;
+import com.example.FixItNow.enums.BookingStatus;
+import com.example.FixItNow.enums.PaymentStatus;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+import com.example.FixItNow.exception.BadRequestException;
+
 import java.time.LocalDateTime;
 
 /**

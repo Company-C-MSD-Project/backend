@@ -1,6 +1,6 @@
 package com.example.FixItNow.repository;
 
-import com.fixitnow.app.entity.Payment;
+import com.example.FixItNow.entity.Payment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

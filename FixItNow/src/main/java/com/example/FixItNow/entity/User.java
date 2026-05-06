@@ -11,6 +11,9 @@ import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDateTime;
+import com.example.FixItNow.enums.UserType;
+import com.example.FixItNow.enums.BadgeLevel;
+
 
 /**
  * Base user entity shared by Homeowners, ServiceProviders, and Admins.

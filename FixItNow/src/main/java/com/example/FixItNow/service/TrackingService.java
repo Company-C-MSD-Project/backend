@@ -5,6 +5,12 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.FixItNow.repository.ProviderLocationRepository;
+import com.example.FixItNow.repository.UserRepository;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.entity.ProviderLocation;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+
 /**
  * Real-time GPS tracking for service providers (SRS FR9).
  * Provider pushes location updates → stored in DB → broadcast to homeowner

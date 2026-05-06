@@ -8,6 +8,8 @@ import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.example.FixItNow.enums.PaymentStatus;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 

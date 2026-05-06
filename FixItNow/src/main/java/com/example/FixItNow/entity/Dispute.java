@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import com.example.FixItNow.enums.DisputeStatus;
+
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;

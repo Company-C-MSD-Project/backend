@@ -1,8 +1,21 @@
 package com.example.FixItNow.service;
 
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.example.FixItNow.repository.BookingRepository;
+import com.example.FixItNow.repository.ServiceRepository;
+import com.example.FixItNow.repository.UserRepository;
+
+import com.example.FixItNow.entity.Booking;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.entity.Service;
+import com.example.FixItNow.enums.BookingStatus;
+import com.example.FixItNow.dto.request.BookingRequest;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+import com.example.FixItNow.exception.BadRequestException;
 
 import java.math.BigDecimal;
 import java.util.List;

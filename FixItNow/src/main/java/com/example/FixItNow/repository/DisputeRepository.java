@@ -1,7 +1,7 @@
 package com.example.FixItNow.repository;
 
-import com.fixitnow.app.entity.Dispute;
-import com.fixitnow.app.enums.DisputeStatus;
+import com.example.FixItNow.entity.Dispute;
+import com.example.FixItNow.enums.DisputeStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

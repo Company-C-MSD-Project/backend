@@ -1,7 +1,7 @@
 package com.example.FixItNow.repository;
 
-import com.fixitnow.app.entity.Booking;
-import com.fixitnow.app.enums.BookingStatus;
+import com.example.FixItNow.entity.Booking;
+import com.example.FixItNow.enums.BookingStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

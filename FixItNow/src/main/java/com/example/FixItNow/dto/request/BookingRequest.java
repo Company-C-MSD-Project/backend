@@ -2,7 +2,7 @@ package com.example.FixItNow.dto.request;
 
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;s
+import lombok.Data;
 
 import java.time.LocalDateTime;
 

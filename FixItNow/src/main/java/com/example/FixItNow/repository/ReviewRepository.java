@@ -1,6 +1,6 @@
 package com.example.FixItNow.repository;
 
-import com.fixitnow.app.entity.Review;
+import com.example.FixItNow.entity.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

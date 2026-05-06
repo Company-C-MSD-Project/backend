@@ -3,6 +3,7 @@ package com.example.FixItNow.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import com.example.FixItNow.enums.BadgeLevel;
 
 /**
  * Smart match result returned to homeowner — includes provider info,

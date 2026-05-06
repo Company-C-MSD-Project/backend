@@ -8,6 +8,16 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.example.FixItNow.repository.DisputeRepository;
+import com.example.FixItNow.repository.BookingRepository;
+import com.example.FixItNow.repository.UserRepository;
+import com.example.FixItNow.entity.Dispute;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.enums.DisputeStatus;
+import com.example.FixItNow.enums.UserType;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+import com.example.FixItNow.exception.BadRequestException;
+
 /**
  * Dispute management (SRS §2.1.2 Dispute Resolution module).
  * Users raise disputes; admin reviews and resolves them.
@@ -47,7 +57,7 @@ public class DisputeService {
         log.warn("Dispute raised for booking {} by user {}", bookingId, raisedById);
 
         // Notify admin team of new dispute
-        userRepository.findByUserType(com.fixitnow.app.enums.UserType.ADMIN).forEach(admin ->
+        userRepository.findByUserType(UserType.ADMIN).forEach(admin ->
                 notificationService.send(admin, "DISPUTE_RAISED",
                         "New dispute raised for booking #" + bookingId + ": " + reason));
 

@@ -1,7 +1,7 @@
 package com.example.FixItNow.repository;
 
-import com.fixitnow.app.entity.User;
-import com.fixitnow.app.enums.UserType;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.enums.UserType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

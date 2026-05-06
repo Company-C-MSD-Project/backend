@@ -9,6 +9,8 @@ import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.example.FixItNow.enums.NotificationChannel;
+
 import java.time.LocalDateTime;
 
 /** In-app and email notifications dispatched on booking/payment events (SRS FR12). */

@@ -3,6 +3,12 @@ package com.example.FixItNow.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import com.example.FixItNow.repository.UserRepository;
+import com.example.FixItNow.repository.ProviderLocationRepository;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.entity.ProviderLocation;
+import com.example.FixItNow.dto.response.ProviderMatchResponse;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;

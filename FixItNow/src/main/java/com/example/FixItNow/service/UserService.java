@@ -4,6 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.FixItNow.repository.UserRepository;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.enums.UserType;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+import com.example.FixItNow.exception.BadRequestException;
+
 import java.util.List;
 
 /** User profile management (SRS FR3, FR5). */

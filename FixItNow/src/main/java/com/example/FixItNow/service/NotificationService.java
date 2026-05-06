@@ -8,6 +8,12 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.FixItNow.repository.NotificationRepository;
+import com.example.FixItNow.entity.Notification;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.enums.NotificationChannel;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+
 import java.util.List;
 
 /**

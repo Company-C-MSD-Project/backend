@@ -3,6 +3,12 @@ package com.example.FixItNow.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.FixItNow.repository.ServiceRepository;
+import com.example.FixItNow.repository.CategoryRepository;
+import com.example.FixItNow.entity.Service;
+import com.example.FixItNow.entity.Category;
+import com.example.FixItNow.exception.ResourceNotFoundException;
+
 import java.util.List;
 
 /** Manages the service catalog — CRUD for individual services under each category (SRS FR4). */
