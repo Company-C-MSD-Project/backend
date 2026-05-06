@@ -47,6 +47,9 @@ public class Booking {
     @Column(name = "service_type")
     private String serviceType;
 
+    @Column(name = "booking_type")
+    private String bookingType;
+
     /** Homeowner's description of the problem/issue. */
     @Column(columnDefinition = "TEXT")
     private String description;
@@ -57,6 +60,25 @@ public class Booking {
     /** Automated cost estimate before confirmation (SRS FR8). */
     @Column(name = "estimated_cost", precision = 10, scale = 2)
     private BigDecimal estimatedCost;
+
+    @Column(name = "final_cost", precision = 10, scale = 2)
+    private BigDecimal finalCost;
+
+    /** Service location address provided by homeowner. */
+    @Column(columnDefinition = "TEXT")
+    private String serviceAddress;
+
+    /** GPS latitude of service location. */
+    @Column(name = "service_latitude")
+    private Double serviceLatitude;
+
+    /** GPS longitude of service location. */
+    @Column(name = "service_longitude")
+    private Double serviceLongitude;
+
+    /** Estimated time of arrival in minutes (SRS FR9). */
+    @Column(name = "eta_minutes")
+    private Integer etaMinutes;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

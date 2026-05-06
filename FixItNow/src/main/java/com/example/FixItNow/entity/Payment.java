@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import com.example.FixItNow.enums.PaymentStatus;
 
@@ -51,9 +52,9 @@ public class Payment {
     @Column(name = "transaction_ref")
     private String transactionRef;
 
-    /** Filesystem path to the auto-generated PDF invoice. */
-    @Column(name = "invoice_path")
-    private String invoicePath;
+    /** Auto-generated invoice number. */
+    @Column(name = "invoice_no", unique = true)
+    private String invoiceNo;
 
     @Column(name = "paid_at")
     private LocalDateTime paidAt;
@@ -61,4 +62,8 @@ public class Payment {
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 }

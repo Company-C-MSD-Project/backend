@@ -69,18 +69,30 @@ public class User {
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
     // ---- Homeowner-specific columns ----
     @Column(name = "is_blacklisted")
     @lombok.Builder.Default
     private boolean isBlacklisted = false;
 
+    @Column(columnDefinition = "TEXT")
+    private String preferredServices;
+
     // ---- ServiceProvider-specific columns ----
     @Column(name = "service_category")
     private String serviceCategory;
 
+    @Column(columnDefinition = "TEXT")
+    private String certifications;
+
     @Column(name = "is_verified")
     @lombok.Builder.Default
     private boolean isVerified = false;
+
+    @Column(name = "availability_status")
+    private String availabilityStatus;
 
     @Column
     @lombok.Builder.Default
