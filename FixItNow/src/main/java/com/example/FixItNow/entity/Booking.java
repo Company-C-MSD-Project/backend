@@ -60,6 +60,7 @@ public class Booking {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @lombok.Builder.Default
     private BookingStatus status = BookingStatus.PENDING;
 
     @Column(name = "cancellation_reason", columnDefinition = "TEXT")

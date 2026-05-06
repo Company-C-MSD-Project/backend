@@ -29,6 +29,7 @@ public class Category {
     private String description;
 
     @Column(name = "is_active")
+    @lombok.Builder.Default
     private boolean isActive = true;
 
     @CreationTimestamp

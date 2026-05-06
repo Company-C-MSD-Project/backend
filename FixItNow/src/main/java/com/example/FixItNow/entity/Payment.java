@@ -36,10 +36,12 @@ public class Payment {
     private BigDecimal amount;
 
     @Column(length = 50)
+    @lombok.Builder.Default
     private String method = "STRIPE";
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @lombok.Builder.Default
     private PaymentStatus status = PaymentStatus.PENDING;
 
     /** Stripe PaymentIntent ID — used to confirm or refund via Stripe API. */

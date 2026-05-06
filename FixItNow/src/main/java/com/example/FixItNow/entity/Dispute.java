@@ -40,6 +40,7 @@ public class Dispute {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
+    @lombok.Builder.Default
     private DisputeStatus status = DisputeStatus.OPEN;
 
     @Column(columnDefinition = "TEXT")

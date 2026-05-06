@@ -62,6 +62,7 @@ public class User {
     private byte[] photo;
 
     @Column(name = "is_active")
+    @lombok.Builder.Default
     private boolean isActive = true;
 
     @CreationTimestamp
@@ -70,6 +71,7 @@ public class User {
 
     // ---- Homeowner-specific columns ----
     @Column(name = "is_blacklisted")
+    @lombok.Builder.Default
     private boolean isBlacklisted = false;
 
     // ---- ServiceProvider-specific columns ----
@@ -77,18 +79,22 @@ public class User {
     private String serviceCategory;
 
     @Column(name = "is_verified")
+    @lombok.Builder.Default
     private boolean isVerified = false;
 
     @Column
+    @lombok.Builder.Default
     private Double rating = 0.0;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "badge_level")
+    @lombok.Builder.Default
     private BadgeLevel badgeLevel = BadgeLevel.NONE;
 
     // ---- Admin-specific columns ----
     private String department;
 
     @Column(name = "access_level")
+    @lombok.Builder.Default
     private Integer accessLevel = 1;
 }

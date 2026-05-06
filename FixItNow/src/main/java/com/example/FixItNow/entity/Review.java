@@ -47,6 +47,7 @@ public class Review {
 
     /** Flagged by admin for inappropriate content — triggers moderation review. */
     @Column(name = "is_flagged")
+    @lombok.Builder.Default
     private boolean isFlagged = false;
 
     @CreationTimestamp

@@ -35,9 +35,11 @@ public class Notification {
     private String message;
 
     @Enumerated(EnumType.STRING)
+    @lombok.Builder.Default
     private NotificationChannel channel = NotificationChannel.BOTH;
 
     @Column(name = "is_read")
+    @lombok.Builder.Default
     private boolean isRead = false;
 
     @CreationTimestamp
