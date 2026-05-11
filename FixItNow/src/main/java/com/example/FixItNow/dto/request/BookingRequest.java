@@ -1,10 +1,10 @@
 package com.example.FixItNow.dto.request;
 
+import java.time.LocalDateTime;
+
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-
-import java.time.LocalDateTime;
 
 /** Request body to create a new booking (SRS FR8 — real-time or scheduled). */
 @Data
