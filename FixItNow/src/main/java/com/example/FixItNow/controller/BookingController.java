@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.example.FixItNow.dto.request.BookingRequest;
+import com.example.FixItNow.dto.response.ApiResponse;
+import com.example.FixItNow.dto.response.ProviderMatchResponse;
+import com.example.FixItNow.entity.Booking;
 import com.example.FixItNow.service.BookingService;
 import com.example.FixItNow.service.SmartMatchService;
 

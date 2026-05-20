@@ -6,8 +6,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.FixItNow.dto.request.LoginRequest;
+import com.example.FixItNow.dto.request.RegisterRequest;
 import com.example.FixItNow.dto.response.ApiResponse;
-import com.stripe.service.issuing.AuthorizationService;
+import com.example.FixItNow.dto.response.AuthResponse;
+import com.example.FixItNow.entity.User;
+import com.example.FixItNow.service.AuthService;
 
 /**
  * Authentication endpoints — public (no JWT required).
@@ -19,7 +23,7 @@ import com.stripe.service.issuing.AuthorizationService;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthorizationService authService;
+    private final AuthService authService;
 
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<User>> register(@Valid @RequestBody RegisterRequest request) {

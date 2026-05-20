@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+import com.example.FixItNow.dto.response.ApiResponse;
+import com.example.FixItNow.entity.Category;
 import com.example.FixItNow.service.CategoryService;
 
 /** Service category endpoints — public read, admin write (SRS FR7). */
