@@ -33,6 +33,11 @@ jobs:
       DB_USERNAME: root
       DB_PASSWORD: testpassword
       JWT_SECRET: "ci-only-jwt-secret-key-minimum-32-characters-long-2026"
+      # Dummy non-empty OAuth client so every @SpringBootTest context (including the
+      # default-profile FixItNowApplicationTests) can build the Google client
+      # registration. The tests never contact Google.
+      GOOGLE_OAUTH_CLIENT_ID: "ci-dummy-client-id"
+      GOOGLE_OAUTH_CLIENT_SECRET: "ci-dummy-client-secret"
 
     defaults:
       run:
