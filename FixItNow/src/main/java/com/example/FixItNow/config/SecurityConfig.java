@@ -63,8 +63,14 @@ public class SecurityConfig {
                 .requestMatchers("GET", "/api/categories/**").permitAll()
                 // Service endpoints (read-only public)
                 .requestMatchers("GET", "/api/services/**").permitAll()
+                // v1 public browse (categories, sub-services, providers)
+                .requestMatchers("GET", "/api/v1/service-categories/**").permitAll()
+                .requestMatchers("GET", "/api/v1/sub-services/**").permitAll()
+                .requestMatchers("GET", "/api/v1/providers/**").permitAll()
                 // Secured endpoints
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                // Root-level admin stats (axios http client) — admin only
+                .requestMatchers("/admin/**").hasRole("ADMIN")
                 .requestMatchers("POST", "/api/bookings/**").hasAnyRole("HOMEOWNER", "SERVICE_PROVIDER")
                 .requestMatchers("GET", "/api/bookings/**").hasAnyRole("HOMEOWNER", "SERVICE_PROVIDER", "ADMIN")
                 .requestMatchers("/api/profile/**").authenticated()
