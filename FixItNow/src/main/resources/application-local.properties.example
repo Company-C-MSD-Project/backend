@@ -1,0 +1,25 @@
+# ============================================================
+# LOCAL secrets template -- COPY this file to:
+#     application-local.properties      (same folder, gitignored)
+# then fill in YOUR values. The real application-local.properties is git-ignored,
+# which is why a fresh clone fails with "Access denied for user 'root'@'localhost'"
+# until you create it with your own MySQL password.
+#
+# It is auto-imported by application.properties (spring.config.import), so once it
+# exists the backend runs with no environment variables.
+# ============================================================
+
+# --- MySQL (REQUIRED) -- set this to YOUR local MySQL password ---
+spring.datasource.password=YOUR_MYSQL_PASSWORD
+# (Username defaults to "root"; override here if different.)
+# spring.datasource.username=root
+
+# --- JWT signing key (any random string >= 32 characters) ---
+jwt.secret=change-me-to-a-random-string-at-least-32-characters-long
+
+# --- Google OAuth ("Sign in with Google") -- OPTIONAL ---
+# Leave blank to disable Google sign-in (the app still boots and email/password
+# login works). To enable it, create a Google OAuth 2.0 "Web application" client
+# and register redirect URI: http://localhost:8080/login/oauth2/code/google
+# spring.security.oauth2.client.registration.google.client-id=your-client-id.apps.googleusercontent.com
+# spring.security.oauth2.client.registration.google.client-secret=your-client-secret
