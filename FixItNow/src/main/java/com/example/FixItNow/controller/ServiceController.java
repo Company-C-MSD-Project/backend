@@ -1,8 +1,9 @@
-﻿package com.example.FixItNow.controller;
+package com.example.FixItNow.controller;
 
 import com.example.FixItNow.dto.response.ApiResponse;
 import com.example.FixItNow.entity.Service;
 import com.example.FixItNow.service.ServiceManagementService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,14 +38,14 @@ public class ServiceController {
     @PostMapping("/category/{categoryId}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Service>> create(@PathVariable Long categoryId,
-                                                       @RequestBody Service service) {
+                                                       @Valid @RequestBody Service service) {
         Service created = serviceManagementService.create(categoryId, service);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.ok("Service created", created));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ApiResponse<Service>> update(@PathVariable Long id, @RequestBody Service updates) {
+    public ResponseEntity<ApiResponse<Service>> update(@PathVariable Long id, @Valid @RequestBody Service updates) {
         return ResponseEntity.ok(ApiResponse.ok("Service updated", serviceManagementService.update(id, updates)));
     }
 

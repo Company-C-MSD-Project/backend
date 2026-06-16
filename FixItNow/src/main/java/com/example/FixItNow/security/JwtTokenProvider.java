@@ -34,11 +34,19 @@ public class JwtTokenProvider {
     /** Create a signed JWT after successful login. */
     public String generateToken(Authentication authentication) {
         UserDetails user = (UserDetails) authentication.getPrincipal();
+        return generateAccessToken(user.getUsername());
+    }
+
+    /**
+     * Create a signed access token for the given subject (username/email).
+     * Used by the refresh flow, where there is no Authentication on the request.
+     */
+    public String generateAccessToken(String username) {
         Date now    = new Date();
         Date expiry = new Date(now.getTime() + jwtExpirationMs);
 
         return Jwts.builder()
-                .setSubject(user.getUsername())
+                .setSubject(username)
                 .setIssuedAt(now)
                 .setExpiration(expiry)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)

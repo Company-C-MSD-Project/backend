@@ -1,6 +1,7 @@
 package com.example.FixItNow.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,6 +24,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Category type is required")
     @Column(name = "category_type", nullable = false, unique = true)
     private String categoryType;
 

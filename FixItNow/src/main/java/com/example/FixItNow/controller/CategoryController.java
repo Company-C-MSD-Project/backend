@@ -1,5 +1,6 @@
 package com.example.FixItNow.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,14 +33,14 @@ public class CategoryController {
 
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ApiResponse<Category>> create(@RequestBody Category category) {
+    public ResponseEntity<ApiResponse<Category>> create(@Valid @RequestBody Category category) {
         Category created = categoryService.create(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.ok("Category created", created));
     }
 
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<ApiResponse<Category>> update(@PathVariable Long id, @RequestBody Category updates) {
+    public ResponseEntity<ApiResponse<Category>> update(@PathVariable Long id, @Valid @RequestBody Category updates) {
         return ResponseEntity.ok(ApiResponse.ok("Category updated", categoryService.update(id, updates)));
     }
 }

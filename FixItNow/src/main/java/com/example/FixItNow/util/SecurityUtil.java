@@ -3,6 +3,8 @@ package com.example.FixItNow.util;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
+import com.example.FixItNow.security.UserPrincipal;
+
 /**
  * Utility to get current authenticated user from Security Context.
  */
@@ -17,15 +19,17 @@ public class SecurityUtil {
     }
 
     /**
-     * Get the ID of the currently authenticated user from SecurityContext.
-     * (Assumes ID is stored in a custom claim or principal)
+     * Get the ID of the currently authenticated user from the SecurityContext.
+     * Returns null when there is no authenticated UserPrincipal (e.g., anonymous request).
      */
     public static Long getCurrentUserId() {
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof org.springframework.security.core.userdetails.User) {
-            // For a real implementation, you'd extract the user ID from the principal
-            // This is a placeholder
+        var authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null) {
             return null;
+        }
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserPrincipal userPrincipal) {
+            return userPrincipal.getId();
         }
         return null;
     }

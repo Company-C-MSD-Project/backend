@@ -1,9 +1,9 @@
-package com.example.fixitnow.controller;
+package com.example.FixItNow.controller;
 
-import com.example.fixitnow.app.dto.response.ApiResponse;
-import com.example.fixitnow.app.entity.Dispute;
-import com.example.fixitnow.app.enums.DisputeStatus;
-import com.example.fixitnow.app.service.DisputeService;
+import com.example.FixItNow.dto.response.ApiResponse;
+import com.example.FixItNow.entity.Dispute;
+import com.example.FixItNow.enums.DisputeStatus;
+import com.example.FixItNow.service.DisputeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

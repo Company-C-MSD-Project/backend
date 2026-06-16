@@ -1,6 +1,9 @@
 package com.example.FixItNow.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,6 +26,7 @@ public class Service {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Service name is required")
     @Column(nullable = false)
     private String name;
 
@@ -31,6 +35,8 @@ public class Service {
     private Category category;
 
     /** Base rate per day — used for cost estimation before booking confirmation. */
+    @NotNull(message = "Day payment rate is required")
+    @DecimalMin(value = "0.0", inclusive = false, message = "Day payment must be greater than 0")
     @Column(name = "day_payment", nullable = false, precision = 10, scale = 2)
     private BigDecimal dayPayment;
 
