@@ -86,6 +86,33 @@ public class AuthV1Service {
         return buildSession(user);
     }
 
+    /**
+     * Find-or-create a user from a verified Google identity and issue a session.
+     * Google-verified accounts are created as active+verified HOMEOWNERs with a
+     * random local password (they always sign in via Google).
+     */
+    @Transactional
+    public AuthSessionV1 oauthLogin(String email, String name) {
+        if (email == null || email.isBlank()) {
+            throw new BadRequestException("Google account did not provide an email.");
+        }
+        User user = userRepository.findByEmail(email).orElseGet(() -> {
+            String username = deriveUsername(null, email);
+            User created = User.builder()
+                    .name(name != null && !name.isBlank() ? name : username)
+                    .email(email)
+                    .username(username)
+                    .passwordHash(passwordEncoder.encode(java.util.UUID.randomUUID().toString()))
+                    .userType(UserType.HOMEOWNER)
+                    .isActive(true)
+                    .isVerified(true)
+                    .build();
+            log.info("OAuth signup (google) for {}", email);
+            return userRepository.save(created);
+        });
+        return buildSession(user);
+    }
+
     /** Exchange a valid refresh token for a new access token (rotates the refresh token). */
     @Transactional
     public AuthSessionV1 refresh(String refreshToken) {

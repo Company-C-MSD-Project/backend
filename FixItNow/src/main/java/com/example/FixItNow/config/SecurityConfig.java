@@ -17,7 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.example.FixItNow.security.HttpCookieOAuth2AuthorizationRequestRepository;
 import com.example.FixItNow.security.JwtAuthFilter;
+import com.example.FixItNow.security.OAuth2LoginSuccessHandler;
 
 /**
  * Spring Security configuration (SRS §2.5 Authentication & RBAC).
@@ -35,6 +37,10 @@ public class SecurityConfig {
     @Value("${cors.allowed-origins}")
     private List<String> allowedOrigins;
 
+    /** Google OAuth client id; when blank, "Sign in with Google" is disabled and the app still boots. */
+    @Value("${spring.security.oauth2.client.registration.google.client-id:}")
+    private String googleClientId;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -46,7 +52,9 @@ public class SecurityConfig {
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity http, JwtAuthFilter jwtAuthFilter,
+                                           HttpCookieOAuth2AuthorizationRequestRepository cookieAuthRequestRepo,
+                                           OAuth2LoginSuccessHandler oauth2SuccessHandler) throws Exception {
         http
             .csrf(csrf -> csrf.disable())
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
@@ -58,6 +66,8 @@ public class SecurityConfig {
                 .requestMatchers("/api/v1/auth/signup", "/api/v1/auth/login",
                         "/api/v1/auth/refresh", "/api/v1/auth/password/forgot").permitAll()
                 .requestMatchers("/api/v1/auth/oauth/**").permitAll()
+                // Spring Security OAuth2 login endpoints (redirect to Google + callback)
+                .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
                 .requestMatchers("/api/public/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
                 // Category endpoints (read-only public)
@@ -88,6 +98,15 @@ public class SecurityConfig {
                 corsConfig.setAllowCredentials(true);
                 return corsConfig;
             }));
+
+        // "Sign in with Google" — only enabled when a client-id is configured, so the
+        // app still boots without Google credentials. Stateless: the in-flight auth
+        // request is carried in a cookie rather than an HTTP session.
+        if (googleClientId != null && !googleClientId.isBlank()) {
+            http.oauth2Login(oauth -> oauth
+                    .authorizationEndpoint(a -> a.authorizationRequestRepository(cookieAuthRequestRepo))
+                    .successHandler(oauth2SuccessHandler));
+        }
 
         // Validate the Bearer JWT on every request and populate the SecurityContext
         // before the username/password filter runs (stateless auth).

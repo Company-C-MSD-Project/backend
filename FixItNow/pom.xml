@@ -94,6 +94,12 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
+        <!-- OAuth2 client for "Sign in with Google" -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+        </dependency>
+
         <!-- Bean validation (@Valid, @NotNull, etc.) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

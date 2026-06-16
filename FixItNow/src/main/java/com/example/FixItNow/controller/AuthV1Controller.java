@@ -67,10 +67,11 @@ public class AuthV1Controller {
         return ResponseEntity.noContent().build();
     }
 
-    /** OAuth is not implemented yet; explicit 501 beats a silent 404 for the redirect. */
+    /** Kicks off the OAuth2 login flow (e.g. provider=google) via Spring Security. */
     @GetMapping("/oauth/{provider}")
-    public ResponseEntity<String> oauth(@PathVariable String provider) {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED)
-                .body("OAuth provider '" + provider + "' is not yet supported.");
+    public ResponseEntity<Void> oauth(@PathVariable String provider) {
+        return ResponseEntity.status(HttpStatus.FOUND)
+                .location(java.net.URI.create("/oauth2/authorization/" + provider))
+                .build();
     }
 }
