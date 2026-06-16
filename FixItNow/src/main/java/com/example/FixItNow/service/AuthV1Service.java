@@ -38,6 +38,7 @@ public class AuthV1Service {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
     private final RefreshTokenService refreshTokenService;
+    private final ProviderRequestV1Service providerRequestService;
 
     @Transactional
     public AuthSessionV1 signup(SignupRequestV1 req) {
@@ -61,6 +62,11 @@ public class AuthV1Service {
 
         user = userRepository.save(user);
         log.info("Signup ({}) for {}", userType, user.getEmail());
+
+        // Providers must be reviewed by an admin — open an application.
+        if (userType == UserType.SERVICE_PROVIDER) {
+            providerRequestService.createForProvider(user, null);
+        }
         return buildSession(user);
     }
 
