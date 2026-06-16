@@ -16,15 +16,15 @@ import com.example.FixItNow.enums.BadgeLevel;
 
 
 /**
- * Base user entity shared by Homeowners, ServiceProviders, and Admins.
- * Uses single-table inheritance with a user_type discriminator column
- * so that all role-specific data lives in one table — simplifies JPA queries
- * and avoids expensive joins for role-check-heavy endpoints (SRS §2.5 Class Diagram).
+ * User entity shared by Homeowners, ServiceProviders, and Admins. A single table
+ * holds all role-specific columns, with the role stored in the {@code user_type}
+ * column — this keeps role-check-heavy endpoints join-free (SRS §2.5 Class Diagram).
+ *
+ * Note: this is a plain entity, NOT a JPA inheritance hierarchy. user_type is a
+ * normal persisted column, so the role is written on insert and read back correctly.
  */
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
 @Getter @Setter @NoArgsConstructor @AllArgsConstructor
 @Builder
 public class User {
@@ -34,7 +34,7 @@ public class User {
     private Long id;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_type", insertable = false, updatable = false)
+    @Column(name = "user_type", nullable = false)
     private UserType userType;
 
     @NotBlank

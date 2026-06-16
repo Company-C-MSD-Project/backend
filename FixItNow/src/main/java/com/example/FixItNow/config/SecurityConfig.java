@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -60,19 +61,22 @@ public class SecurityConfig {
                 .requestMatchers("/api/public/**").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
                 // Category endpoints (read-only public)
-                .requestMatchers("GET", "/api/categories/**").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/categories/**").permitAll()
                 // Service endpoints (read-only public)
-                .requestMatchers("GET", "/api/services/**").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/services/**").permitAll()
                 // v1 public browse (categories, sub-services, providers)
-                .requestMatchers("GET", "/api/v1/service-categories/**").permitAll()
-                .requestMatchers("GET", "/api/v1/sub-services/**").permitAll()
-                .requestMatchers("GET", "/api/v1/providers/**").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/v1/service-categories/**").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/v1/sub-services/**").permitAll()
+                .requestMatchers(HttpMethod.GET,"/api/v1/providers/**").permitAll()
+                // Public news (read-only) and uploaded media
+                .requestMatchers(HttpMethod.GET,"/api/v1/news", "/api/v1/news/**").permitAll()
+                .requestMatchers("/uploads/**").permitAll()
                 // Secured endpoints
                 .requestMatchers("/api/admin/**").hasRole("ADMIN")
                 // Root-level admin stats (axios http client) — admin only
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .requestMatchers("POST", "/api/bookings/**").hasAnyRole("HOMEOWNER", "SERVICE_PROVIDER")
-                .requestMatchers("GET", "/api/bookings/**").hasAnyRole("HOMEOWNER", "SERVICE_PROVIDER", "ADMIN")
+                .requestMatchers(HttpMethod.POST,"/api/bookings/**").hasAnyRole("HOMEOWNER", "SERVICE_PROVIDER")
+                .requestMatchers(HttpMethod.GET,"/api/bookings/**").hasAnyRole("HOMEOWNER", "SERVICE_PROVIDER", "ADMIN")
                 .requestMatchers("/api/profile/**").authenticated()
                 .anyRequest().authenticated()
             )
