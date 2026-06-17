@@ -6,6 +6,7 @@ import com.example.FixItNow.enums.NotificationChannel;
 import com.example.FixItNow.enums.UserType;
 import com.example.FixItNow.repository.NotificationRepository;
 import com.example.FixItNow.service.NotificationService;
+import com.example.FixItNow.service.NotificationV1Service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -33,6 +34,7 @@ class NotificationServiceTest {
 
     @Mock private NotificationRepository notificationRepository;
     @Mock private JavaMailSender mailSender;
+    @Mock private NotificationV1Service notificationV1Service;
 
     @InjectMocks private NotificationService notificationService;
 

@@ -27,8 +27,9 @@ public class NotificationService {
 
     private final NotificationRepository notificationRepository;
     private final JavaMailSender mailSender;
+    private final NotificationV1Service notificationV1Service;
 
-    /** Persist in-app notification and asynchronously send email. */
+    /** Persist in-app notification, push it to any live SSE stream, and asynchronously email it. */
     @Transactional
     public Notification send(User user, String type, String message) {
         Notification notification = Notification.builder()
@@ -39,6 +40,7 @@ public class NotificationService {
                 .isRead(false)
                 .build();
         Notification saved = notificationRepository.save(notification);
+        notificationV1Service.push(user.getId(), saved);
         sendEmail(user.getEmail(), type, message);
         return saved;
     }
