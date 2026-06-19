@@ -116,6 +116,8 @@ public class WalletV1Service {
         }
         // Persisted withdrawals.
         for (WalletTransaction t : walletTxnRepository.findByUserIdOrderByCreatedAtDesc(providerId)) {
+            // Payment credits are already represented by their completed booking above.
+            if ("credit".equalsIgnoreCase(t.getTone())) continue;
             out.add(txn(t.getReference(), t.getDescription(), t.getCreatedAt(),
                     t.getType(), "- " + money(t.getAmount()), t.getTone(), t.getCreatedAt()));
         }
@@ -162,6 +164,7 @@ public class WalletV1Service {
 
     private BigDecimal withdrawn(Long providerId) {
         return walletTxnRepository.findByUserIdOrderByCreatedAtDesc(providerId).stream()
+                .filter(t -> !"credit".equalsIgnoreCase(t.getTone()))
                 .map(WalletTransaction::getAmount).reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 

@@ -11,4 +11,6 @@ import com.example.FixItNow.entity.WalletTransaction;
 public interface WalletTransactionRepository extends JpaRepository<WalletTransaction, Long> {
 
     List<WalletTransaction> findByUserIdOrderByCreatedAtDesc(Long userId);
+
+    boolean existsByReference(String reference);
 }

@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 
 /**
  * Payment record tied to a booking (SRS FR10).
- * Stripe PaymentIntent ID stored for webhook reconciliation.
+ * Gateway identifiers are stored for webhook reconciliation.
  * All payment transactions follow ACID properties (SRS §2.1.2 constraints).
  */
 @Entity
@@ -48,6 +48,14 @@ public class Payment {
     /** Stripe PaymentIntent ID — used to confirm or refund via Stripe API. */
     @Column(name = "stripe_payment_intent")
     private String stripePaymentIntent;
+
+    /** PayPal Orders API order ID. */
+    @Column(name = "paypal_order_id", unique = true)
+    private String paypalOrderId;
+
+    /** PayPal capture ID returned after an approved order is captured. */
+    @Column(name = "paypal_capture_id", unique = true)
+    private String paypalCaptureId;
 
     @Column(name = "transaction_ref")
     private String transactionRef;

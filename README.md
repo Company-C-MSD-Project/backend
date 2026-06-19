@@ -95,6 +95,22 @@ the local file (recommended) **or** environment variables:
 | `SERVER_PORT` | `8080` | Backend port |
 | `CORS_ALLOWED_ORIGINS` | `http://localhost:3000,http://localhost:8080` | Frontend origins |
 | `GOOGLE_OAUTH_CLIENT_ID` / `..._SECRET` | empty | Enables Google sign-in when set |
+| `PAYPAL_CLIENT_ID` / `PAYPAL_SECRET` | empty | PayPal REST app credentials |
+| `PAYPAL_WEBHOOK_ID` | empty | Required to verify PayPal webhook callbacks |
+| `PAYPAL_BASE_URL` | sandbox API | Set to `https://api-m.paypal.com` in production |
+| `PAYPAL_CURRENCY` | `USD` | Orders API currency code |
+
+---
+
+## PayPal payment flow
+
+1. `POST /api/payments/paypal/orders/{bookingId}` creates an order and returns `approveUrl`.
+2. After payer approval, `POST /api/payments/paypal/orders/{orderId}/capture` captures it.
+3. Configure PayPal to send `PAYMENT.CAPTURE.COMPLETED` to
+   `POST /api/payments/paypal/webhook`.
+
+Successful capture records the payment, credits the provider wallet once, and notifies
+the homeowner and provider. Webhook signatures are verified through PayPal.
 
 ---
 

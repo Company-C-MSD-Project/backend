@@ -167,6 +167,8 @@ CREATE TABLE `payments` (
   `paid_at` datetime(6) DEFAULT NULL,
   `status` enum('PENDING','COMPLETED','FAILED','REFUNDED') NOT NULL,
   `stripe_payment_intent` varchar(255) DEFAULT NULL,
+  `paypal_order_id` varchar(255) DEFAULT NULL,
+  `paypal_capture_id` varchar(255) DEFAULT NULL,
   `transaction_ref` varchar(255) DEFAULT NULL,
   `booking_id` bigint NOT NULL,
   `invoice_no` varchar(255) DEFAULT NULL,
@@ -174,6 +176,8 @@ CREATE TABLE `payments` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `UK_nuscjm6x127hkb15kcb8n56wo` (`booking_id`),
   UNIQUE KEY `UK2bxee5dao70nu8wdys6hg8q6j` (`invoice_no`),
+  UNIQUE KEY `UK_payments_paypal_order_id` (`paypal_order_id`),
+  UNIQUE KEY `UK_payments_paypal_capture_id` (`paypal_capture_id`),
   CONSTRAINT `FKc52o2b1jkxttngufqp3t7jr3h` FOREIGN KEY (`booking_id`) REFERENCES `bookings` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;

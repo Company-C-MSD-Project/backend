@@ -23,3 +23,10 @@ jwt.secret=change-me-to-a-random-string-at-least-32-characters-long
 # and register redirect URI: http://localhost:8080/login/oauth2/code/google
 # spring.security.oauth2.client.registration.google.client-id=your-client-id.apps.googleusercontent.com
 # spring.security.oauth2.client.registration.google.client-secret=your-client-secret
+
+# --- PayPal sandbox Orders API -- OPTIONAL ---
+# paypal.client-id=your-sandbox-client-id
+# paypal.secret=your-sandbox-secret
+# paypal.webhook-id=your-sandbox-webhook-id
+# paypal.base-url=https://api-m.sandbox.paypal.com
+# paypal.currency=USD

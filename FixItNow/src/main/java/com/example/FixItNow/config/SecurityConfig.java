@@ -69,6 +69,7 @@ public class SecurityConfig {
                 // Spring Security OAuth2 login endpoints (redirect to Google + callback)
                 .requestMatchers("/oauth2/**", "/login/oauth2/**").permitAll()
                 .requestMatchers("/api/public/**").permitAll()
+                .requestMatchers(HttpMethod.POST, "/api/payments/paypal/webhook").permitAll()
                 .requestMatchers("/actuator/**").permitAll()
                 // Category endpoints (read-only public)
                 .requestMatchers(HttpMethod.GET,"/api/categories/**").permitAll()
